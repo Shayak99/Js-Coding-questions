@@ -1,0 +1,40 @@
+function browserHistory(){
+
+	let history = [];
+  let index= -1;
+  
+  this.visit = function(url){
+    history[++index] = url;
+   // history.length = index + 1;
+  }
+  
+  this.current = function(){
+  	if(index < 0){
+    return "Blank Page";
+    }
+    
+    return history[index];
+  }
+  
+  this.backward = function(){
+  	index = Math.max(-1, --index)
+  }
+  
+  this.forward = function(){
+  	index = Math.min(history.length - 1, ++index); 
+  }
+
+}
+
+
+let bh = new browserHistory();
+
+console.log(bh.current())
+bh.visit("shayak.com")
+console.log(bh.current());
+bh.backward();
+console.log(bh.current());
+bh.backward();
+bh.visit("welcome.com")
+console.log(bh.current());
+
